@@ -27,15 +27,17 @@ export function MainLayout({ onLogout }: MainLayoutProps) {
   };
 
   const handleShowProfile = () => {
+    setShowSettings(true);
     setShowProfile(true);
   };
 
   const handleCloseSettings = () => {
     setShowSettings(false);
+    setShowProfile(false);
   };
 
   if (showSettings) {
-    return <SettingsPage onClose={handleCloseSettings} />;
+    return <SettingsPage onClose={handleCloseSettings} defaultTab={showProfile ? "profile" : "email-accounts"} />;
   }
 
   return (

@@ -133,7 +133,7 @@ export function ChatInterface({ threadId }: ChatInterfaceProps) {
               </Avatar>
 
               {/* Message Content */}
-              <div className={`flex-1 ${msg.sender === "user" ? "text-right" : ""}`}>
+              <div className={`flex-1 ${msg.sender === "user" ? "text-right" : "ml-4"}`}>
                 <Card className={`inline-block max-w-[80%] p-4 ${
                   msg.sender === "user" 
                     ? "bg-gradient-primary text-primary-foreground ml-auto" 
@@ -185,7 +185,7 @@ export function ChatInterface({ threadId }: ChatInterfaceProps) {
         </div>
       </ScrollArea>
 
-      {/* Input Area */}
+          {/* Input Area */}
       <div className="border-t bg-background p-4">
         <div className="max-w-4xl mx-auto">
           <div className="flex items-end gap-2">
@@ -196,6 +196,7 @@ export function ChatInterface({ threadId }: ChatInterfaceProps) {
                 size="icon"
                 onClick={handleFileAttach}
                 className="h-10 w-10"
+                title="Attach file"
               >
                 <Paperclip className="h-4 w-4" />
               </Button>

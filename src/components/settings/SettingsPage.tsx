@@ -47,9 +47,10 @@ interface EmailAccount {
 
 interface SettingsPageProps {
   onClose?: () => void;
+  defaultTab?: string;
 }
 
-export function SettingsPage({ onClose }: SettingsPageProps) {
+export function SettingsPage({ onClose, defaultTab = "email-accounts" }: SettingsPageProps) {
   const { toast } = useToast();
   const [emailAccounts, setEmailAccounts] = useState<EmailAccount[]>([
     {
@@ -74,7 +75,7 @@ export function SettingsPage({ onClose }: SettingsPageProps) {
     },
   ]);
 
-  const [activeTab, setActiveTab] = useState("email-accounts");
+  const [activeTab, setActiveTab] = useState(defaultTab);
 
   const getProviderIcon = (provider: string) => {
     switch (provider) {
