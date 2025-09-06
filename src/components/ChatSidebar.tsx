@@ -136,67 +136,68 @@ export function ChatSidebar({ onNewChat, onSelectThread, activeThreadId }: ChatS
               <SidebarMenu>
                 {filteredThreads.map((thread) => (
                   <SidebarMenuItem key={thread.id}>
-                    <SidebarMenuButton
-                      asChild
-                      className={`group relative hover:bg-accent/50 ${
-                        activeThreadId === thread.id ? "bg-accent text-accent-foreground" : ""
-                      }`}
-                    >
-                      <div
-                        className="flex items-center gap-3 w-full p-3 cursor-pointer"
-                        onClick={() => handleThreadSelect(thread.id)}
+                    <div className="group relative">
+                      <SidebarMenuButton
+                        asChild
+                        isActive={activeThreadId === thread.id}
+                        className="w-full justify-start cursor-pointer hover:bg-accent pr-10"
                       >
-                        <MessageSquare className="h-4 w-4 flex-shrink-0" />
-                        {!isCollapsed && (
-                          <>
-                            <div className="flex-1 min-w-0">
-                              <div className="font-medium text-sm truncate">
+                        <div 
+                          onClick={() => handleThreadSelect(thread.id)} 
+                          className="flex items-start gap-3 p-3 w-full"
+                        >
+                          <MessageSquare className="h-4 w-4 text-muted-foreground flex-shrink-0 mt-0.5" />
+                          {!isCollapsed && (
+                            <div className="flex-1 min-w-0 space-y-1">
+                              <div className="text-sm font-medium truncate">
                                 {thread.title}
                               </div>
-                              <div className="text-xs text-muted-foreground truncate">
+                              <div className="text-xs text-muted-foreground truncate leading-relaxed">
                                 {thread.lastMessage}
                               </div>
-                              <div className="text-xs text-muted-foreground mt-1">
+                              <div className="text-xs text-muted-foreground">
                                 {thread.timestamp}
                               </div>
                             </div>
-                            <DropdownMenu>
-                              <DropdownMenuTrigger asChild>
-                                <Button
-                                  variant="ghost"
-                                  size="icon"
-                                  className="opacity-0 group-hover:opacity-100 h-6 w-6 flex-shrink-0"
-                                  onClick={(e) => e.stopPropagation()}
-                                >
-                                  <MoreHorizontal className="h-3 w-3" />
-                                </Button>
-                              </DropdownMenuTrigger>
-                              <DropdownMenuContent align="end">
-                                <DropdownMenuItem
-                                  onClick={(e) => {
-                                    e.stopPropagation();
-                                    handleRenameThread(thread.id);
-                                  }}
-                                >
-                                  <Edit3 className="mr-2 h-4 w-4" />
-                                  Rename
-                                </DropdownMenuItem>
-                                <DropdownMenuItem
-                                  onClick={(e) => {
-                                    e.stopPropagation();
-                                    handleDeleteThread(thread.id);
-                                  }}
-                                  className="text-destructive focus:text-destructive"
-                                >
-                                  <Trash2 className="mr-2 h-4 w-4" />
-                                  Delete
-                                </DropdownMenuItem>
-                              </DropdownMenuContent>
-                            </DropdownMenu>
-                          </>
-                        )}
-                      </div>
-                    </SidebarMenuButton>
+                          )}
+                        </div>
+                      </SidebarMenuButton>
+                      {!isCollapsed && (
+                        <DropdownMenu>
+                          <DropdownMenuTrigger asChild>
+                            <Button
+                              variant="ghost"
+                              size="icon"
+                              className="absolute right-2 top-2 h-6 w-6 opacity-0 group-hover:opacity-100 transition-opacity"
+                              onClick={(e) => e.stopPropagation()}
+                            >
+                              <MoreHorizontal className="h-3 w-3" />
+                            </Button>
+                          </DropdownMenuTrigger>
+                          <DropdownMenuContent align="end">
+                            <DropdownMenuItem
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                handleRenameThread(thread.id);
+                              }}
+                            >
+                              <Edit3 className="mr-2 h-4 w-4" />
+                              Rename
+                            </DropdownMenuItem>
+                            <DropdownMenuItem
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                handleDeleteThread(thread.id);
+                              }}
+                              className="text-destructive focus:text-destructive"
+                            >
+                              <Trash2 className="mr-2 h-4 w-4" />
+                              Delete
+                            </DropdownMenuItem>
+                          </DropdownMenuContent>
+                        </DropdownMenu>
+                      )}
+                    </div>
                   </SidebarMenuItem>
                 ))}
               </SidebarMenu>
