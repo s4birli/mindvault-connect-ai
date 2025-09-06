@@ -1,6 +1,32 @@
-# Welcome to your Lovable project
+# MindVault - Intelligent Email Assistant
 
-## Project info
+## Project Overview
+
+MindVault is a modern ChatGPT-like AI assistant designed to help users manage and analyze their email communications. Built with React, TypeScript, and Tailwind CSS, it features a beautiful blue-themed interface that conveys intelligence and trust.
+
+## Features
+
+- **ChatGPT-Style Interface**: Thread-based conversations with AI
+- **Email Account Management**: Connect multiple email providers (Gmail, Outlook, iCloud, POP3)
+- **Intelligent Design**: Blue gradient theme for a smart, professional look
+- **Authentication System**: Login, register, and password reset functionality
+- **Responsive Design**: Optimized for all devices
+- **Settings Management**: Configure email sync frequency, account settings
+- **File Upload Support**: Send images, documents, and voice messages
+- **Thread Management**: Organize conversations with search and filtering
+
+## Tech Stack
+
+- **Frontend**: React, TypeScript, Tailwind CSS
+- **UI Components**: shadcn/ui
+- **State Management**: React hooks
+- **Routing**: React Router
+- **Icons**: Lucide React
+- **Build Tool**: Vite
+
+## Getting Started
+
+To run this project locally:
 
 **URL**: https://lovable.dev/projects/4857c8f5-26fb-4bef-a9b0-cdc70f614f1e
 
