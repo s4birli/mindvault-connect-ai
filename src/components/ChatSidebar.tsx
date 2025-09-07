@@ -137,25 +137,22 @@ export function ChatSidebar({ onNewChat, onSelectThread, activeThreadId }: ChatS
                 {filteredThreads.map((thread) => (
                   <SidebarMenuItem key={thread.id}>
                     <div className="group relative">
-                      <SidebarMenuButton
+                       <SidebarMenuButton
                         asChild
                         isActive={activeThreadId === thread.id}
-                        className="w-full justify-start cursor-pointer hover:bg-accent pr-10"
+                        className="w-full justify-start cursor-pointer hover:bg-accent pr-8"
                       >
                         <div 
                           onClick={() => handleThreadSelect(thread.id)} 
-                          className="flex items-start gap-3 p-3 w-full"
+                          className="flex items-center gap-3 p-2 w-full"
                         >
-                          <MessageSquare className="h-4 w-4 text-muted-foreground flex-shrink-0 mt-0.5" />
+                          <MessageSquare className="h-4 w-4 text-muted-foreground flex-shrink-0" />
                           {!isCollapsed && (
-                            <div className="flex-1 min-w-0 space-y-1">
+                            <div className="flex-1 min-w-0">
                               <div className="text-sm font-medium truncate">
                                 {thread.title}
                               </div>
-                              <div className="text-xs text-muted-foreground truncate leading-relaxed">
-                                {thread.lastMessage}
-                              </div>
-                              <div className="text-xs text-muted-foreground">
+                              <div className="text-xs text-muted-foreground truncate">
                                 {thread.timestamp}
                               </div>
                             </div>
@@ -168,7 +165,7 @@ export function ChatSidebar({ onNewChat, onSelectThread, activeThreadId }: ChatS
                             <Button
                               variant="ghost"
                               size="icon"
-                              className="absolute right-2 top-2 h-6 w-6 opacity-0 group-hover:opacity-100 transition-opacity"
+                              className="absolute right-1 top-1/2 -translate-y-1/2 h-7 w-7 opacity-0 group-hover:opacity-100 transition-opacity z-10 bg-background/80 hover:bg-accent"
                               onClick={(e) => e.stopPropagation()}
                             >
                               <MoreHorizontal className="h-3 w-3" />
