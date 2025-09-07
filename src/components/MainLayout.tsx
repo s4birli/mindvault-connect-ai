@@ -52,20 +52,17 @@ export function MainLayout({ onLogout }: MainLayoutProps) {
           />
         </div>
 
-        {/* Main Content */}
-        <div className="flex w-full pt-16">
-          {/* Sidebar */}
-          <ChatSidebar
-            onNewChat={handleNewChat}
-            onSelectThread={handleSelectThread}
-            activeThreadId={activeThreadId}
-          />
+        {/* Sidebar */}
+        <ChatSidebar
+          onNewChat={handleNewChat}
+          onSelectThread={handleSelectThread}
+          activeThreadId={activeThreadId}
+        />
 
-          {/* Chat Interface */}
-          <main className="flex-1 flex flex-col">
-            <ChatInterface threadId={activeThreadId} />
-          </main>
-        </div>
+        {/* Chat Interface */}
+        <main className="flex-1 flex flex-col pt-16">
+          <ChatInterface threadId={activeThreadId} />
+        </main>
       </div>
     </SidebarProvider>
   );
