@@ -133,7 +133,7 @@ export function ChatSidebar({ onNewChat, onSelectThread, activeThreadId }: ChatS
           )}
           <SidebarGroupContent>
             <ScrollArea className="flex-1">
-              <SidebarMenu>
+                <SidebarMenu className="space-y-2">
                 {filteredThreads.map((thread) => (
                   <SidebarMenuItem key={thread.id}>
                     <div className="group relative">
@@ -144,7 +144,7 @@ export function ChatSidebar({ onNewChat, onSelectThread, activeThreadId }: ChatS
                       >
                         <div 
                           onClick={() => handleThreadSelect(thread.id)} 
-                          className="flex items-center gap-3 p-2 w-full"
+                          className="flex items-center gap-3 p-3 w-full"
                         >
                           <MessageSquare className="h-4 w-4 text-muted-foreground flex-shrink-0" />
                           {!isCollapsed && (

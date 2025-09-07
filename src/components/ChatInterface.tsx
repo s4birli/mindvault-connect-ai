@@ -1,8 +1,15 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Card } from "@/components/ui/card";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { 
   Send, 
   Paperclip, 
@@ -12,9 +19,9 @@ import {
   User,
   Copy,
   ThumbsUp,
-  ThumbsDown
+  ThumbsDown,
+  Plus
 } from "lucide-react";
-import { Card } from "@/components/ui/card";
 
 interface Message {
   id: string;
@@ -189,34 +196,33 @@ export function ChatInterface({ threadId }: ChatInterfaceProps) {
       <div className="border-t bg-background p-4">
         <div className="max-w-4xl mx-auto">
           <div className="flex items-end gap-2">
-            {/* Attachment Buttons */}
-            <div className="flex gap-1">
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={handleFileAttach}
-                className="h-10 w-10"
-                title="Attach file"
-              >
-                <Paperclip className="h-4 w-4" />
-              </Button>
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={handleCameraCapture}
-                className="h-10 w-10"
-              >
-                <Camera className="h-4 w-4" />
-              </Button>
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={toggleRecording}
-                className={`h-10 w-10 ${isRecording ? "text-destructive" : ""}`}
-              >
-                <Mic className="h-4 w-4" />
-              </Button>
-            </div>
+            {/* Attachment Menu */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="h-10 w-10"
+                  title="Add attachment"
+                >
+                  <Plus className="h-4 w-4" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="start" side="top">
+                <DropdownMenuItem onClick={handleFileAttach}>
+                  <Paperclip className="mr-2 h-4 w-4" />
+                  Upload File
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={handleCameraCapture}>
+                  <Camera className="mr-2 h-4 w-4" />
+                  Take Photo
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={toggleRecording}>
+                  <Mic className="mr-2 h-4 w-4" />
+                  Record Audio
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
 
             {/* Message Input */}
             <div className="flex-1 relative">
@@ -225,17 +231,28 @@ export function ChatInterface({ threadId }: ChatInterfaceProps) {
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 onKeyPress={handleKeyPress}
-                className="min-h-[60px] max-h-[200px] resize-none pr-12"
+                className="min-h-[60px] max-h-[200px] resize-none pr-20"
                 rows={1}
               />
-              <Button
-                onClick={handleSendMessage}
-                disabled={!message.trim()}
-                size="icon"
-                className="absolute right-2 bottom-2 h-8 w-8 rounded-full bg-gradient-primary hover:opacity-90"
-              >
-                <Send className="h-4 w-4" />
-              </Button>
+              <div className="absolute right-2 bottom-2 flex gap-1">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={toggleRecording}
+                  className={`h-8 w-8 rounded-full ${isRecording ? "text-destructive bg-destructive/10" : ""}`}
+                  title="Voice message"
+                >
+                  <Mic className="h-4 w-4" />
+                </Button>
+                <Button
+                  onClick={handleSendMessage}
+                  disabled={!message.trim()}
+                  size="icon"
+                  className="h-8 w-8 rounded-full bg-gradient-primary hover:opacity-90"
+                >
+                  <Send className="h-4 w-4" />
+                </Button>
+              </div>
             </div>
           </div>
 
